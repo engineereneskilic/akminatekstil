@@ -1,0 +1,208 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--içerik tipinin karakter senin türkçe yani UTF-8  -->
+	<meta http-equiv="Content-Language" content="tr"><!--içerik dilin tükçe olduğunu -->
+    
+	<link rel="shortcut icon" href="img/logo.ico"><!--sekmedeki küçük resim sayfa resmi -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet"> <!--yazı fontunu google nin kütüphanesinden alıyoruz -->
+
+	<title>	Gömleklik Kumaş | Poliviskon Kumaş | Terry Cotton Kumaş - AKMİNA KUMAŞ &amp; TEKSTİL</title><!--sekmedeki başlık sayfa başlığı -->
+    <link href="css/tum_site_tasarimi.css" rel="stylesheet" type="text/css" /><!--harici css dosyamızı ekliyoruz -->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script><!--jquery kütüphanemizi çağırıyoruz ve en garanti yerden kendi sitesinden ve son sürümü -->
+	<style type="text/css">
+		#slider_kutulari , #slider_kutulari li{ /* slider listesinin kendisi ve elemanlarının özellikleri */
+			padding-bottom:5px;/*alttan iç boşluk*/
+			margin:0px;/*dış boşluk hiç olmasın*/
+			list-style-type:none;/*liste başlarında icon olmasın yani yuvarlak kare filan olmasın*/
+		}
+		#slider_kutulari {/*slider listesnin kendisi*/
+			border: 1 px solid #222;
+			width:273px;
+			/* bu lineer gradient üsten alt tarafa doğru üst orta ve alt taraf olcak şekilde değişik 3 rengin birleşiminden oluşan arkaplan */
+			background:-webkit-linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+			height:25px;
+			float:center;/*slider kutularını ortala*/
+			margin-top:5px;/*üstten dış boşluk*/
+			margin-bottom:5px;/* altan dış boşluk*/
+		}
+		#slider_kutulari li{/*slider listesinin elemanları*/
+			padding:5px;/*her taraftan iç boşluk*/
+			padding-left:9.1px;/*soldan iç boşluk*/
+			float:left;/*liste elemanlarını sola yasla yanyana olsunlar*/
+			border-right:1px solid rgba(0,0,0,0.1);/*elemanların sol taraflarına 1 px kalınlığında kalın çizgi tipinde belirtilen rgba kodu renginde çizgi*/
+			cursor:pointer;/* li üstüne mouse el şeklini alsın */
+		}
+		#slider_kutulari li a{/*slider listesinin elemanlarının linkleri*/
+			color:#fff;/*yazi rengi beyaz*/
+			padding:3px;/* iç boşluk*/
+			padding-left:1px;/*soldan iç boşluk*/
+		}
+		.secili{/* slider listesine tıklandığı zaman yani seçildiği zaman uygulanacak sınıf*/
+				background-color:#1d9ce5;/*arkaplan rengi*/
+		}
+		.s_resimler{/*slayt resminin bulunduğu class*/
+			background-position:center;/* arkaplanı ortala */
+		}
+		.s_resimler img{/* slayt resminin bulunduğu classın resimleri*/
+			width:1000px; /* resimlerin genişliği*/
+			border: 1px solid #1990d5;/*resimlerin etrafı 1px çizgi tipi kalın ve rengi mavi */
+			
+		}	
+	</style>
+    <script type="text/javascript">
+		var sayac=2;// resim sayacı
+		var resim_sayisi;/* sliderdaki toplam resim sayısı*/
+		var zamanlayici;/* sürekli olarak sayıcak zamanlayıcımız(setInterval)*/
+		var secilen_slayt_no;/*kullanıcının sececegi slayt numarası*/
+		$(document).ready(function(e) {
+			// ilk önce secili slider elemanımız için işlemlerimizi yapalım
+			$(".s_resimler").hide();
+			$("#s1_kutu").addClass("secili");/* seçilin olan liste elemanını seçilmiş gibi ayarla yani aslında tıklanmış gibi */
+			$("#s1").fadeIn(500);// ilk içeriği yani ilk resmi gösterdik
+			$("#s1").delay(3000).fadeOut(500);// ilk içeriği yani ilk resmi gizledik delay bekleme zamanı fadeout ise animasyonlu çıkış süresi yani kayboluş
+			
+			$("#slider_kutulari li").click(function(){ // slider listesindeki elemanlara tıklandığında çalışan fonksyon
+				$("#slider_kutulari li").removeClass("secili"); //slider ın diğer elemanlarına tıklandığında seçili olan slider gitsin css secili classı silinsin tüm elemanlardan kimdeyse
+				$(this).addClass("secili"); // tıkladığımız elemana seçili css classımızı atıyoruz
+				$("s_resimler").hide();//eski içeriği yani resmi görünmez yapıyoruz çünkü artık başka bir elemandayız
+				
+				/*
+				tıkladığımız bu elemanın eleman sıra numarasını yani indexini alıyoruz ve resim sayacımızın tıkladığımız liste sırasındaki elemanın indexine 
+				 göre sonra resim göstercez ve split ile numarayı ayıklıycaz
+				 */
+				secilen_slayt_no=$(this).find("a").attr("href").split('s');
+				sayac=secilen_slayt_no[1];
+				
+			});
+			resim_sayisi=$(".s_resimler img").length; // s_resimler classının içindeki tüm resimlerin sayısı yani slider toplam resim sayısı
+			
+			zamanlayici=setInterval(surekli,3500);/* sayfa yüklendiğinde zamanlayıcım çalışsın*/
+		});
+		function surekli(){	
+				/* tüm resimleri bu şekilde gösterip bekletip gizliyoruz*/
+					$("#slider_kutulari li").removeClass("secili"); //slider listesinin elemanlarının hepsinden secili classı kalsın
+					$("#s"+sayac+"_kutu").addClass("secili"); //sırası gelen resimin kutusuna secili eklensin
+					$("#s"+sayac).fadeIn(500);/* 500 ms de resmi animasyonlu göster*/
+					$("#s"+sayac).delay(2500).fadeOut(500);/* 2500 milisaniye bekle ve sonra 500 ms de animasyonlu kaybet*/
+				 if(sayac<resim_sayisi){ // sayac resim sayısından küçükse artsın
+					 sayac++;
+				 }else{// sayac resim sayacına ulaşmaışsa slaytın sonuna gelimiştir tekrar 1 den başlasın
+					 sayac=1;
+				 }
+		}
+	</script>
+</head>
+<body>						
+										<!--NAVİGATİON BAŞI -->
+<div class="navigation">
+	<div class="container">
+    	<div class="logo_duzeni">
+        	<img src="img/logo.png" width="120" alt="site logosu" title="site logosu"><!--title üzerine mouse ile geldiğimizde çıkıcak yazı -->
+    	</div>
+        <ul class="menu">
+            <li>
+                <a href="iletisim.html">İLETİŞİM</a>
+            </li>
+            <li>
+                <a href="#">ÜRÜNLER <b class="asagi_ok"></b></a><!--b kalın etiketi -->
+            		<!--ALT MENÜ -->
+                <ul>
+                    <li>
+                    <a href="kumas_cesitleri/gomleklik_kumas.html"><img src="img/gomleklik_kumas_bg_kucuk.jpg" class="img-circle" width="35">Gömleklik Kumaş</a>
+                    </li>
+                    <li>
+                    <a href="kumas_cesitleri/poliviskon_kumas.html"><img src="img/poliviskon_kumas_bg_kucuk.jpg" class="img-circle" width="35">Poliviskon Kumaş</a>
+                    </li>
+                    <li>
+                    <a href="kumas_cesitleri/pamuklu_kumas.html"><img src="img/pamuklu_kumas_bg_kucuk.png" class="img-circle" width="35">Pamuklu Kumaş</a>
+                    </li>
+                </ul>
+            </li>    
+            <li>
+                <a href="hakkimizda.html">HAKKIMIZDA</a>
+            </li>
+            <li>
+                <a href="anasayfa.html">ANASAYFA</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+ 										<!--NAVİGATİON SONU -->
+                                        <!--SAYFA İÇERİĞİ BAŞI -->
+
+
+<div class="container">
+	<center>
+    <div class="row">
+    	<div class="page-header">
+          	<div class="sayfa_baslik_yazilari genel_kutular">
+                 <h2>FİRMAMIZ</h2>
+          	</div>  
+     	</div>
+        <div id="anasayfa_slider">
+        <!-- SLİDER BAŞI -->
+        	<ul id="slider_kutulari">
+            	<li id="s1_kutu"><a href="#s1">1</a></li>
+                <li id="s2_kutu"><a href="#s2">2</a></li>
+                <li id="s3_kutu"><a href="#s3">3</a></li>
+                <li id="s4_kutu"><a href="#s4">4</a></li>
+                <li id="s5_kutu"><a href="#s5">5</a></li>
+                <li id="s6_kutu"><a href="#s6">6</a></li>
+                <li id="s7_kutu"><a href="#s7">7</a></li>
+                <li id="s8_kutu"><a href="#s8">8</a></li>
+                <li id="s9_kutu"><a href="#s9">9</a></li>
+                <li id="s10_kutu"><a href="#s10">10</a></li>
+            </ul>
+            <div class="icerik">
+                <div id="s1" class="s_resimler">
+                    <img src="img/slider/firmamiz/1.jpg" alt="Resim 1" />
+                </div>
+                 <div id="s2" class="s_resimler">
+                    <img src="img/slider/firmamiz/2.jpg" alt="Resim 2" />
+                </div>
+                 <div id="s3" class="s_resimler">
+                    <img src="img/slider/firmamiz/3.jpg" alt="Resim 3" />
+                </div>
+                 <div id="s4" class="s_resimler">
+                    <img src="img/slider/firmamiz/4.jpg" alt="Resim 4" />
+                </div>
+                 <div id="s5" class="s_resimler">
+                    <img src="img/slider/firmamiz/5.jpg" alt="Resim 5" />
+                </div>
+                 <div id="s6" class="s_resimler">
+                    <img src="img/slider/firmamiz/6.jpg" alt="Resim 6" />
+                </div>
+                 <div id="s7" class="s_resimler">
+                    <img src="img/slider/firmamiz/7.jpg" alt="Resim 7" />
+                </div>
+                 <div id="s8" class="s_resimler">
+                    <img src="img/slider/firmamiz/8.jpg" alt="Resim 8" />
+                </div>
+                 <div id="s9" class="s_resimler">
+                    <img src="img/slider/firmamiz/9.jpg" alt="Resim 9" />
+                </div>
+                 <div id="s10" class="s_resimler">
+                    <img src="img/slider/firmamiz/10.jpg" alt="Resim 10" />
+                </div>
+            </div>
+       </div>
+		<!--SLİDER SONU -->
+	</div>
+</center>
+	
+										<!--SAYFA İÇERİĞİ SONU-->
+										<!--FOOTER BAŞI -->
+									<div style="clear:both"></div><!--hizalamaları temizle -->
+                                    <!--yani float ile verdiğimiz hizalamaların hepsini temizle böylece footerın hiç bir float yaslamasından etkilenmiyor -->
+<div class="container"><hr></div><!--hr çizgi etiketi -->
+<div class="container">
+           <div class="footer_div"> 
+      			<div class="footer_yazi"><center>2017 © akminatektsil.com | akminatektsil@hotmail.com</center></div>
+    	   </div>
+	</div>
+</div>
+										<!--FOOTER SONU-->
+</div>
+</body>
+</html>

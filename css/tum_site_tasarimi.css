@@ -1,0 +1,361 @@
+/* genel dizaynlar*/
+body {
+  font-family: 'Roboto Slab', serif;/* sayfa geneli yazı tipi*/
+  font-size: 14px;/* sayfa geneli yazı büyüklüğü */
+  line-height: 1.42857143; /* satır aralığı standart değer */
+  color: #317eac;/* sayfa geneli yazı rengi*/
+}
+*{ /* tüm elemanlar */
+  padding: 0px;
+  margin: 0px;
+  border:0px;
+  list-style-type:none;/*liste işaretleri yok*/
+}
+
+a{/*sayfalardaki bütün linklerin altı çizili olmasın */
+text-decoration:none;
+}
+/* genel dizayanlar sonu*/
+
+/* navigation başı */
+.navigation{/* navigation classı */
+/* bu lineer gradient üsten alt tarafa doğru üst orta ve alt taraf olcak şekilde değişik 3 rengin birleşiminden oluşan arkaplan */
+background:-webkit-linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+height:50px;
+}
+/* > anlamı ilk demek yani ul.menu içerindeki ilk li etiketlerini etkile alt menüyü yani açılır menüyü etkileme */
+.navigation ul.menu >li{/*navigation classına ait ul listesinin menu calssının ilk li elemanları*/
+	float:right;/* yanyana diziyor */
+	position:relative /* bunun sayesinde alt menülerimiz bir üst menüleri içinde bağımsız oluyorlar*/
+	
+}
+.navigation ul.menu >li >a{/*navigatiın classına ait ul listesinin menu calssının lik li elemanın linkleri*/
+	display:block;/* block şeklinde olsunlar iç içe girmesinler  */
+	font-size:14px;/* 14 px boyutunda olsunlar */
+	color:#fff;/* beyaz renkte olsunlar */
+	padding:0px 15px;/* soldan 0px sağdan 15er px olsunlar  */
+	line-height:50px;/* satır yükseklikleri yani menu linkleri belli aralıklarda olmalı bunun boşluğunu ayarlama*/
+	border-right: 1px solid rgba(0,0,0,.1);/* sol kenarlık 1 px normal çizgi ve rengi */
+	border-left:1px solid rgba(0,0,0,.1);/* yine aynı şekil sağ kenarlık */
+}
+
+/* navigation classının içindeki ul nin menu classındaki li yani elemanların üstüne geldiğinde içlerindeki tüm alt menulere uygula*/
+.navigation ul.menu >li:hover ul{
+	opacity:1;/* 1 e doğru olucak animasyonun 1'i bu saydamlık */
+	visibility:visible;/* görünür yap*/
+	top:50px;/*üsten boşluğu arttır 30 dan 50 olsun*/
+}
+.navigation ul.menu >li:hover{/* navigation classının ul listesinin menu clasının ana li lerinin üstüne gelince */
+background:rgb(23,138,204);/*Arkaplan rgb kodlarına göre kırmızı yeşil mavi değerlerini yazıyoruz ve renk tonumuz oluşuyor.*/
+}
+
+/* alt menü tasarımı */
+.navigation ul.menu ul{/* navigation classı içindeki ul listesinin menu clasına ait ul listesi*/
+	background:#fff;/* arkaplan alt menun biraz daha açık mavi olsun*/
+	width:200px;/* genişlik 200px */	
+	position:absolute; /* pozisyonunu serbest bırakıyoruzki istediğimiz gibi yeriyle oynayalım*/
+	top:30px;/* yukardan 30px gel diyoruz*/
+	left:0px;/* soldan 0px gel diyoruz ki ana listeye elemanına yapışsın*/
+	opacity:0;/* 0 saydamlıktan */
+	transition: 250ms all;/* 1e doğru animasyon animasyonlu bir şekilde gelsin 250 milisaniyede tüm içindekiler */
+	visibility:hidden;/* görünürlüğü gizli olsun başlangıç için*/
+	border:1px solid #CCC;/* kenarlık 1 px kalın çizgi tipli gri tonu olsun*/
+	z-index:1;/* açılır menü altta kalmasın*/
+
+	/*Not: şimdi diyebilirsiniz niye serbest bıraktı zaten onun altında çıkıyodu diye ama yukardaki menü ile aynı genişlikteydi 
+	ondan bağımsız bir genişlikte ama onun hizasında olması lazım biz burda bağımsız bir alt menü oluşturduk şimdide bu bağımsız 
+	alt menüyü oldu fakat bu bağımsızlığı sadece  bir li içinde olmalı*/
+}
+.navigation ul.menu ul li a{ /* navigation classının menu alt menünün yani ul nin elemanlarının yani li lerinin linkleri */
+	display:block;/* block şeklinde olsunlar iç içe girmesinler */
+	padding:7px 12px;/* sol sağ iç boşlukları */
+	color:#317eac;/* yazı rengi */
+	font-size:14px;/* yazı boyutu*/
+	
+}
+ /*navigation classının alt menünün yani ul nin elemanlarının yani li lerinin  üzerine gelindiğinde ve 
+ alt menü elemanlarının linkleri üzerine geldiğinde */
+.navigation ul.menu ul li:hover,.navigation ul.menu ul li a:hover {
+	background-color:#54b4eb;
+	color:#FFF;	
+}
+.navigation ul.menu ul li img{ /* navigation calasının alt menünün elemanları içindeki resimler*/
+padding-right:3px;/* sol taraflarında yazı olcağı için 3px iç boşluk yeticektir*/
+}
+/* Not: ul sırasız liste*/
+
+.asagi_ok {
+  display: inline-block; /* tek hat üstünde block yani yanına kimse gelemez satır onun */
+  width: 0px; /* genişlik 0px */
+  height: 0px;/* yükseklik 0px */
+  margin-left: 2px;/* soldan iki boşluk */
+  vertical-align: middle;/* dikey hizalamasını ortala */
+  /* oku aslında borderlar la oluşturuyoruz */
+  border-top: 4px solid;/* üstten 4px kenarlık kalın çizgi */
+  border-right: 4px solid transparent; /* sol taraf çizgi 4 px kalın olsun ama gözükmesin arkaplanla uyumlu olsun yani transparent olsun */
+  border-left: 4px solid transparent;/* sağ tarafta yine aynı şekil*/
+}	
+/* navigation sonu*/
+/*resim özellikleri */
+img {
+  vertical-align: middle; /* dikeyde tüm resimleri ortala */
+}
+.img-circle {
+  border-radius: 50%; /* kenarları %50 oranında yuvarla */
+}
+.img-thumbnail {
+  padding:1px;/* iç boşluk resim ile kenarlık arasında*/
+  background-color: #ffffff;/* arkaplan beyaz */
+  border: 1px solid #317eac; /* çizgi 1 px kalın çizgi tipli ve mavi tonlu*/
+  border-radius: 4px;/* kenarları 4 px yuvarlatılmış*/
+  max-width: 100%;/*içindeki arkaplanı yüzde yüz kapsa yani resim bulunduğu yeri kaplasın*/
+  height: auto;/* yükseklik otomatik ayarlansın*/
+}
+.logo_duzeni img{/* logo düzeni classı içindeki tüm resimler; burası navigationda sol tarafta bulunan resim yani site logosu*/
+	float:left; /* resmi sola yasla */
+}
+/* resim özellikleri sonu*/
+
+hr { /* düz çizgi özellikleri */
+  margin-top: 20px; /* çizgimizin üstüne 20px boşluk */
+  margin-bottom: 20px;/* çizgimizin altına 20 px boşluk */
+  border: 0;/* tarayıcı kenarlık vermesin */
+  border-top: 1px solid #eeeeee;/* kenarlık olmasın fakat sadece üstten olsun oda 1px kalın ve #eeeeee renginde olsun */
+}
+
+/* sol şerit menüsü tasarımı*/
+.solserit_menusu {/* sol şerit menüsü komple dizaynı*/
+  margin-top:40px;/* 40 px üstten*/
+  margin-bottom: 20px;/*20 px alttan */
+  padding-left: 0px;/*soldan iç boşluk olmasın*/
+  border:1px solid #1990d5;/*dış border mavi tonu olsun*/
+  border-radius:3px;/* kenarlar yuvarlansın*/
+}
+.solserit_menusu-eleman {/* sol şerit menüsü elemanları*/
+  position: relative;/*sol şerit menüsü elemanlarını normal pozisyonda tut*/
+  display: block;/*blok olarak tut elemanlar dağılmasın*/
+  padding: 10px 1px; /* üst ve alt 10px , sol ve sağ 1 px dış boşluk */
+  margin-bottom: -1px;/* alttan 1 px kendisine çek*/
+  background-color: #ffffff;/*arkaplan beyaz*/
+  border-bottom:1px solid #dddddd; /*alt ve üst çizgiler 1 px kalınlığında kalın çizgi tipli gri renkte */
+  border-top:1px solid #dddddd;
+}
+.solserit_menusu-baslik {/*sol şerit menüsü başlık elemanı*/
+  background-color: #d9edf7;/*mavi tonlu */ 
+}
+.solserit_menusu-baslik h4{/*sol şerit menüsü başlık elemanın h4 başlıkları*/
+  color: #3a87ad;/*yazi mavi tonlu*/
+  text-align:center;/* yazı ortala*/
+  font-weight:bold;/* yazı ağırlığı kalın*/
+}
+.solserit_menusu a{/* sol şerit menüsünün linkleri*/
+	text-align:center;/*yazı ortala*/
+	color:#317eac;/* yazı mavi renk tonlu*/	
+}
+.solserit_menusu-eleman:hover{/*sol şerit elemanlarının üstüne geldiğinde*/
+	background-color:#F5F5F5;/* arkaplan rengi gri tonu olsun*/
+}
+.solserit_menusu-eleman:last-child{ /*solserit_menusu-eleman classına son atanan etiket*/
+	 border-bottom-color:#1990d5;/* alt çizgi mavi olsun */
+}
+/* sol şerit sonu*/
+
+/* sayfa başlıkları*/
+.sayfa_baslik_yazilari h2{/* sayfa başlıkları classının tüm h2 leri*/
+	color:#317eac;/* başlıkların arkaplanı rengi mavi tonlu*/
+	font-weight:bold;/* başıkların yazı ağırlığı yani genişlemesine özeliği bol yani kalın*/
+	text-align:center;/* yazıyı ortala*/
+	font-size:24px;/*24 px boyutunda olsun*/
+	}	
+.genel_kutular {/* sitenin genelinde gri arkaplanlı mavi kenarlıklı kutuları var bu kutuların classı*/
+  padding: 19px;/* her taraftan iç boşluğu*/
+  background-color: #f5f5f5;/* arkaplan rengi gri tonlu olsun */
+  border: 1px solid #1990d5;/* border her tarafına 1 px kalın kenarlıklı mavi tonlu olsun*/
+  border-radius: 4px;/*kenarlıklar yuvarlatılmış olsun*/
+}
+.page-header {/*sayfa başlığı genel özelliklerinin bulunduğu div */
+  padding-bottom: 9px;/* alt taraftan iç boşluk*/
+  margin-top:40px;;/* üst ve alt taraf dış boşlukları*/
+  border-bottom: 1px solid #eeeeee;/*9px verdiğimiz alt boşluğa 1 px kalın çizgi tipli gri tonlu çizgi ekliyoruz altına*/
+  margin-bottom:20px;
+}
+/*sayfa başlıkları sonu*/
+
+/* form başı*/
+.form-eleman {
+  display: block;/*kalıp olarak ayarlanmış istenildiği gibi yükseklik genişlik verilebilir*/
+  width: 100%;/*genişlik bulunduğu alanın hepsini kapsa*/
+  height: 20px;/*yükseklik*/
+  padding: 8px 12px;/*alt ve üst 8 px sol ve sağ 12 px iç boşluk*/
+  font-size: 14px;/*font büyüklüğü 14px*/
+  color: #555555;/*form elemanlarının içine yazılan yazılar yani giriş yazının rengi normal renkte yani gri tonlu*/
+  background-color: #ffffff;/*arkaplan beyaz*/
+  border: 1px solid #cccccc;/*kenarlıklar 1 px kalınlığında kalın çizgi tipli gri renkte*/
+  border-radius: 4px;/*köşeler yuvarlatışmış*/
+  margin-bottom:20px;/*alttan boşluk*/
+  
+
+}
+.form-eleman:focus {/*form eleman classı odaklandığı zaman*/
+  border-color: #66afe9;
+  outline: 0px;/*odaknalınan yerlerde genelde kullanılır ve 0 px dış çizgi renk değiştirirken tam çizgiye yapışmasını sağlar.
+  Bunu en iyi kodu silip tekrar yazarak görebilirsiniz*
+  */
+  box-shadow: 0px 0px 8px rgba(102, 175, 233, 0.6);
+  /*
+  box-shadow yada text-shadow aynı görevi görür ve gölge efekti verir.Teker teker nası kullanıldığına bakalım.
+  İlk değer;Yataydaki mesafe içindir. Artı değerler kutunun sağından itibaren uzaklık değeridir, negatif değerler kutunun soluna doğru mesafeyi gösterir.
+  İkinci değer;Dikeydeki mesafe içindir. Artı değerler kutunun altına doğru mesafeyi gösterir, eksi değerler ise kutunun üstüne doğru mesafesini gösterir.
+  Üçüncü değer;Bulanıklık(blur) değeridir. Gölgelerin gerçeğe yaklaşması için kullanılır. Bulanık yatay ve dikey için verilen değerler göre şekil alır.
+  Dördüncü değer;Gölgenin rengidir.
+  */
+}
+label {/*sayfadaki tüm labellar */
+  display: inline-block;/*bulunduğu alan içinde tek şerit halinde iç içe girmesin diye blok olarak ayarlansın*/
+  margin-bottom: 5px;/*alttan dış boşluk*/
+  font-weight: bold;/*font ağırlığı(genişliği) kalın*/
+}
+/*form sonu*/
+
+/* uyari classları */
+.uyari_sari {/* sarı tonlu uyarı classım */
+  /* sarı renk özelliklerini atayalım */
+  background-color: #fcf8e3;
+  border-color: #fbeed5;
+  color: #c09853;
+}
+.uyari{/*uyari classım benim tüm uyari renkli classlarımın kurucusu aslında yani hepsinin ortak özellikleri bu classta*/
+    padding: 15px;/*her taraftan iç boşluk*/
+    margin-bottom: 20px;/*alttan dış boşluk*/
+    border: 1px solid transparent;/*kenarlık 1px kalınlığında kalın çizgi tipli ve transparent olsun neden derseniz değişen uyariya göre renk 
+	zaten değişecektir biz sadece burda çizgiyi tanımlıyoruz ama rengini vermiyoruz*/
+    border-radius: 4px;	/*köşeler yuvarlatılmış olsun*/
+}
+.uyari_tehlike {
+  /*kırmızı renk özelliklerini atayalım*/
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  margin-top:10px;/*üstten dış boşluk*/
+  border-radius:3px;/*köşeler yuvarlatımış*/
+  padding:3px;/*her taraftan iç boşluk*/
+}
+.uyari_basarili{
+  /*yeşil renk özelliklerini atayalım*/
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+/*uyari classları sonu */
+
+
+/* button tasarımı*/
+#gonder_button{
+	width:100%;/* bulunduğu div yani alan içinde genişliği 100% kapsa*/
+	/* bu lineer gradient üsten alt tarafa doğru üst orta ve alt taraf olcak şekilde değişik 3 rengin birleşiminden oluşan arkaplan */
+	background:-webkit-linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+	border-radius:6px;/* köşeleri yuvarlat */
+	border:1px solid #057fd0;/*1px kalınlığında kalın çizgili koyu mavi tonlu renkte*/
+	display:inline-block;/*tek şeritte blok şeklinde*/
+	cursor:pointer;/*fare imleci el işarteri olsun*/
+	color:#ffffff;/*yazı arkaplanı beyaz*/
+	font-family:Arial;/*font stili Arial*/
+	font-size:15px;/*font büyüklüğü 15px*/
+	font-weight:bold;/*font ağırlığı(genişlik) kalın*/
+	padding:8px 24px;/*alt ve üst 8 px, sağ ve sol 24px iç boşluk*/
+}
+#gonder_button:hover{/*gonder_button classının üzerine gelince*/
+	background-image:none;/*lineer gradient arkaplanını yok edip*/
+	background-color:#019ad2;/* üstüne düz arkaplan rengi veriyoruz*/
+}
+#gonder_button:active{/*gonder_button classı aktif olunca bu aktiflik fare bir kere tıklamasıyla yada klavyedeki bir tuşla olabilir*/
+	position:relative;/*buttonu rahat hareket ettirmek için serbest bırak*/
+	top:1px;	/*bir pixel aşağı insin*/
+}
+#gonder_button[disabled],input[type=text]:disabled,textarea:disabled{ /*gonder_button classı, bütün text kutuları ve textareaların girişi engellendiği zaman*/
+	background-color: #eee;/*arkaplan gri tonlu olsun*/
+    opacity: .65;/*saydamlık değeri 1 tam görünür demek biz arasında bişey yapıp hafif kaybolmasını sağlıyoruz*/
+	cursor:not-allowed;/* fare imleci girilmez işaretine dönsün*/
+}
+/* button tasarımı sonu*/
+
+/*footer*/
+.footer_div{
+	/* bu lineer gradient üsten alt tarafa doğru üst orta ve alt taraf olcak şekilde değişik 3 rengin birleşiminden oluşan arkaplan */
+	background:-webkit-linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+	height:50px;/* 50 px yüksekliğinde*/
+	border-radius:4px;	/* kenarları 4 px yuvarlat*/
+}
+.footer_yazi{
+ color:#fff;/* yazi beyaz renkte*/
+ padding-top:15px;/*sol taraftan 15 px boşluk*/
+}
+/* footer sonu*/
+
+.urun_isimlik {/* ürünlerin isimlerinin bulunduğu sınıf */
+	color: #FFFFFF;/*yazılar beyaz*/
+    background-color: #2fa4e7;/*arkaplan mavi tonlu*/
+    padding: 10px 20px;/*alt ve üst 10px , sol ve sağ 20px*/
+    font-size: 12px;/*fontu sitenin genel yazı tipinden biraz daha fazla küçültelim*/
+    text-align: left;/*yazıları sola hizalayalım*/
+	margin-top:3px;/*üstten resimlere yapışmasın diye 3px*/
+	margin-bottom:30px;/*altan alta gelen resimlerden ayrılsın diye 30px*/
+	border-radius:3px;/*kenarları yumuşatılmış*/
+	width:85.5%;/*genişlikde bulunduğu alanın yüzde 85.5 tam resimin altına geliyor*/
+	}	
+
+/*SİTE GENEL ÖLÇÜLERİ*/
+.container {/* sitenin genel classı sitenin genel boşluğunu genişliğini ayarlıyacak*/
+					 	/* bu boşluklar otomatik genişlik verileceği için engel*/
+  margin-right: auto; /* sol boşluk otomatik */
+  margin-left: auto;/*  sağ boşluk otomatilk*/
+  padding-left: 15px;/* içindeki itemler container yapışmasın diye soldan */
+  padding-right: 15px;/*											  .. sağdan boşluk*/
+}
+/* siteyi açtığınız cihaz ekranına göre genişlik belirleniyor*/
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.row { /* sitedeki elemanlar listenirken birbirlerine girmesin diye boşluk sağlıyor*/
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.sol_taraf,.sag_taraf,.sag_taraf,.sag_taraf_yarisi,.urun_kutusu{
+	position:relative;/*posizsyonu serbest bırak yeri değiştirilebilir olsun*/
+	float:left;/*sağ taraf clasları yanyana sola yaslansın*/
+}
+
+.sol_taraf,.sag_taraf,.sag_taraf,.sag_taraf_yarisi { /* bütün genel ölçü classlarımıza ortalama ayarlar yapıyoruz*/
+  padding-left: 15px;/*sol taraftan iç boşluk*/
+  padding-right: 0px;/*sağ taraftan iç boşluk*/
+}
+
+.sag_taraf {
+    width: 71.5%;/*genişlik sayfa yüzdesine göre olsun*/
+}
+.sol_taraf {
+    width: 25%;/*genişlik sayfanin çeyreğine göre olsun*/
+}
+.sag_taraf_yarisi {
+    width: 46.2%;/*genişlik sayfa yüzdesine göre olsun hemen hemen yarısı*/
+  }
+  
+.urun_kutusu {
+    width: 28.3333%;/*genişlik sayfa yüzdesine göre olsun*/
+	margin-left:20px;/*sol taraftan dış boşluk*/
+	margin-right:20px;/*sağ taraftan dış boşluk*/
+}
+
